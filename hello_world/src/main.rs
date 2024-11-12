@@ -14,7 +14,27 @@ fn scope()
     }
 }
 
+fn control_flow()
+{
+    let proceed = true;
+    if proceed {
+        println!("proceed");
+    } else {
+        println!("stop");
+    }
+
+    let height = 200;
+    if height < 150 {
+        println!("short");
+    } else if height < 170 {
+        println!("average");
+    } else {
+        println!("tall");
+    }
+}
+
 fn main() 
 {
+    control_flow();
     scope();
 }
