@@ -1,5 +1,4 @@
 
-
 fn scope()
 {
     let x: i32 = 42;
@@ -101,8 +100,83 @@ fn conditional2()
         println!("not a number!");
     }
 }
+
+
+fn whileloop()
+{
+  let mut i =1;
+  while i<5{
+    println!("i = {}",i);
+    i +=1;
+  }
+}
+
+fn while2_input()
+{
+    let mut input = String::new();
+    while input.trim() != "bye" {
+        input.clear();
+        println!("Please enter bye! to exit");
+        std::io::stdin().read_line(&mut input).expect("Failed to read input");
+        println!("You entered: {}",input);
+    }
+    println!("GoodBye!");
+
+}
+
+fn forloop()
+{
+    for i in (1..5).rev() {
+        println!("i = {}",i);
+    }
+}
+
+
+fn forloop_vector()
+{
+    let v= vec! {1,2,3};
+    for n in v
+    {
+        println!("n = {}",n);
+    }
+}
+
+
+fn break_continue()
+{
+    for i in 1..10{
+        if i%2 == 0 {
+            //Skip the even numbers
+            continue;
+        }
+        println!("i = {}",i);
+
+        if i >= 7 {
+            //Exit the loop when i is 7
+            break;
+        }
+    }
+}
+
+
 fn main() 
 {
+
+    println!("break_continue");
+    break_continue();
+
+    println!("forloop vector");
+    forloop_vector();
+
+    println!("forloop");
+    forloop();
+
+    println!("while2 input");
+   //while2_input();
+
+    println!("while loop");
+    whileloop();
+
     println!("conditional2");
     conditional2();
 
