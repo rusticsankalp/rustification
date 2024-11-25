@@ -141,7 +141,6 @@ fn forloop_vector()
     }
 }
 
-
 fn break_continue()
 {
     for i in 1..10{
@@ -152,15 +151,30 @@ fn break_continue()
         println!("i = {}",i);
 
         if i >= 7 {
-            //Exit the loop when i is 7
+            //Exit the loop when i is 7 or more
             break;
         }
     }
 }
 
+fn match_control_flow()
+{
+    let name = "hello 2";
+
+    match name{
+        "good bye" => println!("Sorry to see you go!"),
+        "hello" => println!("Hi, nice to meet you!"),
+        _ => println!("I dont have a greeting for that")
+    }
+
+}
+
 
 fn main() 
 {
+
+    println!("match_control_flow");
+    match_control_flow();
 
     println!("break_continue");
     break_continue();
