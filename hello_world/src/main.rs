@@ -1,3 +1,5 @@
+use std::os::windows::process;
+
 
 fn scope()
 {
@@ -169,9 +171,52 @@ fn match_control_flow()
 
 }
 
+/////Unit functions wlice
+fn process_numbers(numbers: &[i32])
+{
+    let mut sum = 0 ; 
+
+    for number in numbers{
+        sum += number;
+    }
+
+    println!("The sum of the numbers is :{}",sum);
+
+    if(sum %2 == 0){
+        println!("Sum is even");
+        
+    }
+    else{
+        println!("the sum is odd");
+    }
+}
+
+// return vlaues
+fn split_string(s:String, delimiter:char, field: usize) -> String {
+    let parts :Vec<&str> = s.split(delimiter).collect();
+    let result = parts.get(field);
+
+    //This would not complile
+    //result.to_string()
+
+
+    //This would compile but will panic
+    //result.expect("oops! something went wrong").to_string();
+     
+
+    match result{
+        Some(result) => result.to_string(),
+        None=>("no result".to_string())
+    }
+}
 
 fn main() 
 {
+
+    println!("returning values :: {}", split_string("hello_world".to_string(),',',1));
+
+    println!("Unit function slice sum");
+    process_numbers(&[1,2,3,4,5]);
 
     println!("match_control_flow");
     match_control_flow();
