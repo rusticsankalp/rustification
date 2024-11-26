@@ -219,9 +219,67 @@ fn sum (numbers :&[i32]) -> i32 {
     result
 }
 
+
+//: what is this ?
+#[derive(Debug)]
+struct Person{
+    first_name: String, 
+    last_name: String,
+    age: u8,
+}
+
+fn struct_example()
+{
+    let person = Person{
+        first_name: "John".to_string(),
+        last_name: "Doe".to_string(),
+        age: 30,
+    };
+
+    println!("first name is :  {:?}",person.first_name);
+}
+
+#[derive(Debug)]
+struct User{
+    username: String,
+    email: String,
+    sign_in_count: u64,
+    active: bool,
+}
+
+impl User{
+    fn new (username: &str, email: &str) -> Self{
+        Self{
+            username: username.to_string(),
+            email: email.to_string(),
+            sign_in_count: 0,
+            active: true,
+        }
+    }
+
+    fn deactivate(&mut self){
+        self.active = false;
+    }
+}
+
+
 fn main() 
 {
 
+
+    println!("struct_constructor_example"); 
+    let mut user = User::new("johndoe","johndoe@john.com");
+    user.deactivate();
+
+
+    println!("struct_example"); 
+    struct_example();
+
+    println!("Person Struct {:?}",Person{
+        first_name: "John".to_string(),
+        last_name: "Doe".to_string(),
+        age: 30,
+    });
 
     println!("sum of numbers :: {}",sum(&[1,2,3]));
     println!("returning values :: {}", split_string("hello_world".to_string(),',',1));
