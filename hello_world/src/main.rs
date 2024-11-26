@@ -210,9 +210,20 @@ fn split_string(s:String, delimiter:char, field: usize) -> String {
     }
 }
 
+fn sum (numbers :&[i32]) -> i32 {
+    let mut result = 0;
+    for number in numbers{
+        result += number;
+    } 
+
+    result
+}
+
 fn main() 
 {
 
+
+    println!("sum of numbers :: {}",sum(&[1,2,3]));
     println!("returning values :: {}", split_string("hello_world".to_string(),',',1));
 
     println!("Unit function slice sum");
