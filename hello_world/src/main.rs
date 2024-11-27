@@ -1,4 +1,4 @@
-use std::os::windows::process;
+use std::{net::ToSocketAddrs, os::windows::process};
 
 
 fn scope()
@@ -353,7 +353,7 @@ struct Disk{
     size: u64,
     disk_type: DiskType,
 }
-
+//: What. how does derive(Debug) work ?
 
 #[derive(Debug)]
 enum WineRegions{
@@ -404,9 +404,60 @@ fn supported_wine_regions(w:WineRegions)
     }
 }
 
+fn option_divide(x:i32, y:i32) ->Option<i32>{
+    if y == 0 {
+        None
+    } else {
+        Some(x/y)
+    }
+}
 
+fn option_usage()
+{
+    let result = option_divide(10,5);
+    match result{
+        Some(value) => println!("Result : {}",value),
+        None => println!("Cannot divide by zero"),
+    }
+
+    let result = option_divide(10,0);
+    match result{
+        Some(value) => println!("Result : {}",value),
+        None => println!("Cannot divide by zero"),
+    }
+}
+
+enum Shape{
+    Circle(f64),
+    Square(f64),
+}
+
+fn enum_vector()
+{
+    let shapes = vec![
+        Shape::Circle(10.0),
+        Shape::Square(10.0),
+      
+    ];
+
+    let total_area: f64 = shapes
+    .iter()
+    .map(|shape|match shape{
+        Shape::Circle(radius) => 3.14 * radius * radius,
+        Shape::Square(side) => side * side,
+    }).sum();
+
+    println!("Total area : {}",total_area);
+}
 fn main() 
 {
+
+    print!("enum_vector");
+    enum_vector();
+
+    println!("option_usage");
+    option_usage();
+
     println!("vector_adding_items");
     vector_adding_items();
 
