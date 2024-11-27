@@ -1,10 +1,11 @@
+#[derive(PartialEq,Debug)]
 pub enum Loglevel {
     Info,
     Debug,
     Error,
 }
 
-
+#[derive(PartialEq,Debug)]
 pub enum LogOut {
     Stdout,
     Stderr,
@@ -20,6 +21,8 @@ pub enum LogOut {
 ///   output: LogOut::Stdout,
 /// };
 /// '''
+
+#[derive(PartialEq,Debug)]
 pub struct LogginConfig {
     pub level: Loglevel,
     pub output: LogOut,
@@ -36,6 +39,5 @@ impl LogginConfig{
             level,
             output,
         }
-    }
-    
+    }    
 }
