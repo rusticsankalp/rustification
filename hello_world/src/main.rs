@@ -263,9 +263,158 @@ impl User{
 }
 
 
+fn print_str(s:&str){
+    println!("{}",s);
+}
+
+fn print_string(s:String){
+    println!("{}",s);
+}
+
+fn print_strings()
+{
+    let s = "string tests";
+    let salutation = String::from("a quick brown fox jumps over the lazy dog");
+
+    print_str(s);
+    
+    //: This would nob work if salutation is used after
+    //print_string(salutation);
+
+    for c in salutation.to_string().chars(){
+        match c{
+            'a'|'e'|'i'|'o'|'u' => println!("{} is a vowel",c),
+            _ => continue,
+        }
+    }
+
+    let words:Vec<&str> = salutation.split_whitespace().collect();
+    println!("{:?}",words);
+}
+
+
+fn vector_ownership(){
+    let v = vec![1,2,3];
+    
+
+    let slice  = &v[..];
+
+    println!("{:?}",slice);
+
+    let mut v2 = vec![1,2,3];
+    let slice2 = &mut v2[..];
+
+    slice2[0] = 10;
+
+    println!("{:?}",slice2);
+    
+}
+
+
+fn vector_adding_items(){
+  let mut v = vec![1,2,3];
+
+  v.push(4);
+
+  let more_numbers = vec![5,6,7];
+  //extend adds each element of the given slice to the vector
+  v.extend(more_numbers);
+
+  println!("{:?}",v);
+
+  let mut other_numbers = vec![8,9,10];
+
+  //append adds the given vector to the vector, requires the vector to be mutable
+  v.append(&mut other_numbers);
+
+  //insert item at a given index
+  v.insert(0,0);
+
+  println!("{:?}",v);
+
+}
+
+#[derive(Debug)]
+enum DiskType{
+    SSD,
+    HDD,
+}
+
+#[derive(Debug)]
+enum DiskSize{
+    KB(u32),
+    MB(u32),
+    GB(u32),
+
+}
+
+#[derive(Debug)]
+struct Disk{
+    size: u64,
+    disk_type: DiskType,
+}
+
+
+#[derive(Debug)]
+enum WineRegions{
+    Bordeaux,
+    Burgundy,
+    Champagne,
+    Alsace,
+    Languedoc,
+    Loire,
+    Tuscany,
+
+}
+
+#[derive(Debug)]
+struct Wine{
+    name : String, 
+    region : WineRegions,
+}
+
+fn enum_usage()
+{
+    let disk = Disk{
+        size: 1024,
+        disk_type: DiskType::SSD,
+    };
+
+    println!("{:?}",disk);
+
+    let wine = Wine{
+        name: "Chardonnay".to_string(),
+        region: WineRegions::Bordeaux,
+    };
+
+    println!("{:?}",wine);
+}
+
+fn supported_wine_regions(w:WineRegions)
+{
+    match w{
+        WineRegions::Bordeaux => println!("Bordeaux"),
+        WineRegions::Burgundy => println!("Burgundy"),
+        WineRegions::Champagne => println!("Champagne"),
+        WineRegions::Alsace => println!("Alsace"),
+        WineRegions::Languedoc => println!("Languedoc"),
+        WineRegions::Loire => println!("Loire"),
+        //WinRegions::Tuscany => println!("Tuscany"),
+        _ => println!("unsupported region"),
+    }
+}
+
+
 fn main() 
 {
+    println!("vector_adding_items");
+    vector_adding_items();
 
+    println!("vector"); 
+    vector_ownership();
+
+    println!("String and String slices"); 
+    print_strings();
 
     println!("struct_constructor_example"); 
     let mut user = User::new("johndoe","johndoe@john.com");
