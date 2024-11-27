@@ -1,9 +1,12 @@
 //! This library is a simple example of a library crate.
 //! use cli-test::read_stdin;
-//! 
+
 
 use std::io::{BufRead, BufReader};
 
+pub mod config;
+
+/// This function takes a string and returns it as a string
 ///This function reads a line from stdin and returns it as a a String
 /// It will panic if it fails to read a line with a message "Failed to read line"
 pub fn read_stdin() ->String{
